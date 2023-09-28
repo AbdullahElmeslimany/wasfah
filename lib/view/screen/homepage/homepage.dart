@@ -5,7 +5,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wasfah/addpageadmin/addpage.dart';
 import 'package:wasfah/constant/const.dart';
 import 'package:wasfah/loginpage/loginscreen.dart';
 import 'package:wasfah/personscreen/personscreen.dart';
@@ -111,24 +110,25 @@ class _MyHomePageState extends State<MyHomePage> {
                                       const SizedBox(
                                         width: 15,
                                       ),
-                                     StreamBuilder(
-                                       stream: Connectivity().onConnectivityChanged,
-                                       
-                                       builder: (BuildContext context, AsyncSnapshot snapshot) {
-                                         return  Container(
-                                        height: 10,
-                                        width: 10,
-                                        decoration: BoxDecoration(
-                                          color: snapshot.data ==
-                                                  ConnectivityResult.none
-                                              ? Colors.grey
-                                              : Colors.green,
-                                          borderRadius:
-                                              BorderRadius.circular(25),
-                                        ),
-                                      );
-                                       },
-                                     ),
+                                      StreamBuilder(
+                                        stream: Connectivity()
+                                            .onConnectivityChanged,
+                                        builder: (BuildContext context,
+                                            AsyncSnapshot snapshot) {
+                                          return Container(
+                                            height: 10,
+                                            width: 10,
+                                            decoration: BoxDecoration(
+                                              color: snapshot.data ==
+                                                      ConnectivityResult.none
+                                                  ? Colors.grey
+                                                  : Colors.green,
+                                              borderRadius:
+                                                  BorderRadius.circular(25),
+                                            ),
+                                          );
+                                        },
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -189,7 +189,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             MaterialPageRoute(
                                                 builder: (context) =>
                                                     // const AddPageAdmin(),
-                                                    TextfieldTest()));
+                                                      const TextfieldTest()));
                                       } else {
                                         PersonPage(
                                           id: widget.iduser,

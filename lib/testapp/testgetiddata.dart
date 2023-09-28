@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_typing_uninitialized_variables
+// ignore_for_file: prefer_typing_uninitialized_variables, unnecessary_null_comparison, unnecessary_new
 
 import 'dart:math';
 
@@ -56,7 +56,6 @@ class _GetDataIdState extends State<GetDataId> {
                   itemBuilder: (BuildContext context, int index) {
                     return Text(listData[index]["name"]
                         [_random.nextInt(listData.length)]);
-                    Text(listData[index]["name"]);
                   },
                 ),
               ),

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1032814513127",
+    "project_id": "wasfa-51a2a",
+    "storage_bucket": "wasfa-51a2a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1032814513127:android:b6841438b209a077ce8b42",
+        "android_client_info": {
+          "package_name": "com.muslim.wasfah"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1032814513127-qqvaed2tp67tf8rsm4q25hfgvq321vb9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBI6yW7XVinVxd-UeTV3sL0nOZMn6IU6a8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1032814513127-qqvaed2tp67tf8rsm4q25hfgvq321vb9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -42,25 +42,26 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Wasfah',
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color(0xffecebeb),
+        scaffoldBackgroundColor: Color.fromARGB(255, 241, 241, 241),
+        // scaffoldBackgroundColor: const Color(0xffFFF1E8),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
         useMaterial3: true,
       ),
 
-      home: const OnBoarding(),
-      // home: StreamBuilder(
-      //   stream: Connectivity().onConnectivityChanged,
-      //   builder: (BuildContext context, AsyncSnapshot snapshot) {
-      //     return Container(
-      //         child: onboarder == true
-      //             ? repeatshared == true
-      //                 ? MyHomePage(
-      //                     iduser: idshared!,
-      //                   )
-      //                 : const LogInPage()
-      //             : const OnBoarding());
-      //   },
-      // ),
+      // home: const OnBoarding(),
+      home: StreamBuilder(
+        stream: Connectivity().onConnectivityChanged,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          return Container(
+              child: onboarder == true
+                  ? repeatshared == true
+                      ? MyHomePage(
+                          iduser: idshared!,
+                        )
+                      : const LogInPage()
+                  : const OnBoarding());
+        },
+      ),
     );
   }
 }

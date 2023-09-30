@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wasfah/loginpage/loginscreen.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:wasfah/onboardingscreen/onboardingpage.dart';
 import 'package:wasfah/view/screen/homepage/homepage.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 String? idshared;
 bool? repeatshared;
+bool? onboarder;
 ConnectivityResult? listenconnetivtey;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +18,9 @@ void main() async {
   SharedPreferences prefget = await SharedPreferences.getInstance();
   idshared = prefget.getString("id");
   repeatshared = prefget.getBool('repeat');
+  onboarder = prefget.getBool('onboarder');
+  print(onboarder);
+
   print("===============================================");
   print(repeatshared);
   (Connectivity().onConnectivityChanged.listen((event) {
@@ -42,19 +47,20 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
 
-      // home: const GetDataId(),
-      home: StreamBuilder(
-        stream: Connectivity().onConnectivityChanged,
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          return Container(
-            child: repeatshared == true
-                ? MyHomePage(
-                    iduser: idshared!,
-                  )
-                : const LogInPage(),
-          );
-        },
-      ),
+      home: const OnBoarding(),
+      // home: StreamBuilder(
+      //   stream: Connectivity().onConnectivityChanged,
+      //   builder: (BuildContext context, AsyncSnapshot snapshot) {
+      //     return Container(
+      //         child: onboarder == true
+      //             ? repeatshared == true
+      //                 ? MyHomePage(
+      //                     iduser: idshared!,
+      //                   )
+      //                 : const LogInPage()
+      //             : const OnBoarding());
+      //   },
+      // ),
     );
   }
 }

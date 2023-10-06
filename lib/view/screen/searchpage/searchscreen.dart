@@ -2,6 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:wasfah/constant/const.dart';
 import 'package:wasfah/view/screen/recipepage/reciepepage.dart';
 
 class SearchPage extends StatefulWidget {
@@ -60,10 +61,12 @@ class _SearchPageState extends State<SearchPage> {
               ),
             ),
             Container(
-              decoration: const BoxDecoration(color: Colors.amber),
+              decoration: BoxDecoration(
+                  color: Colors.amber, borderRadius: BorderRadius.circular(25)),
               child: MaterialButton(
-                child:
-                    loading == true ? const CircularProgressIndicator() : const Text("get"),
+                child: loading == true
+                    ? const CircularProgressIndicator()
+                    : const Text("get"),
                 onPressed: () {
                   setState(() {
                     data.clear();
@@ -97,8 +100,24 @@ class _SearchPageState extends State<SearchPage> {
                           child: Container(
                               height: 40,
                               width: MediaQuery.sizeOf(context).width - 30,
-                              decoration: const BoxDecoration(color: Colors.teal),
-                              child: Center(child: Text(data[index]["name"])))),
+                              decoration: BoxDecoration(color: redColor),
+                              child: Center(
+                                  child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    height: 30,
+                                    child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Image.network(
+                                            data[index]["urlimage"])),
+                                  ),
+                                  SizedBox(
+                                    width: 90,
+                                  ),
+                                  Text(data[index]["name"]),
+                                ],
+                              )))),
                     ],
                   );
                 },

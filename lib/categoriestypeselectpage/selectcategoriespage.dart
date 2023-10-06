@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:wasfah/constant/const.dart';
 import 'package:wasfah/view/screen/recipepage/reciepepage.dart';
 
 class SelectCategoriesScreen extends StatefulWidget {
@@ -53,7 +54,7 @@ class _SelectCategoriesScreenState extends State<SelectCategoriesScreen> {
                     child: Text(
                       "${widget.name}",
                       style: TextStyle(
-                          color: Colors.teal[500],
+                          color: redColor,
                           fontSize: 30,
                           fontWeight: FontWeight.bold),
                     ),
@@ -87,6 +88,17 @@ class _SelectCategoriesScreenState extends State<SelectCategoriesScreen> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
+                                    Container(
+                                      height: 65,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Image.network(
+                                            data[index]["urlimage"]),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 30,
+                                    ),
                                     Text(
                                       data[index]["name"],
                                       style: const TextStyle(

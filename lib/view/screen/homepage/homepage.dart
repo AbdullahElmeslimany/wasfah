@@ -8,7 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wasfah/constant/const.dart';
 import 'package:wasfah/loginpage/loginscreen.dart';
 import 'package:wasfah/personscreen/personscreen.dart';
-import 'package:wasfah/testapp/testtextfild.dart';
+import 'package:wasfah/addpageadmin/additempage.dart';
 import 'package:wasfah/testapp/username.dart';
 import 'package:wasfah/view/screen/homepage/categories.dart';
 import 'package:wasfah/view/screen/homepage/recommedation.dart';
@@ -189,7 +189,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             MaterialPageRoute(
                                                 builder: (context) =>
                                                     // const AddPageAdmin(),
-                                                      const TextfieldTest()));
+                                                      const AdditemFirebase()));
                                       } else {
                                         PersonPage(
                                           id: widget.iduser,

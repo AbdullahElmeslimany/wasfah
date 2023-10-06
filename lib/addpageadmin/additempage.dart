@@ -1,14 +1,50 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
+import 'dart:io';
 
-class TextfieldTest extends StatefulWidget {
-  const TextfieldTest({super.key});
+import 'package:path/path.dart';
+import 'package:http/http.dart' as http;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:wasfah/constant/const.dart';
+
+class AdditemFirebase extends StatefulWidget {
+  const AdditemFirebase({super.key});
 
   @override
-  State<TextfieldTest> createState() => _TextfieldTestState();
+  State<AdditemFirebase> createState() => _AdditemFirebaseState();
 }
 
-class _TextfieldTestState extends State<TextfieldTest> {
+class _AdditemFirebaseState extends State<AdditemFirebase> {
+  File? image;
+  String? url;
+
+  final ImagePicker picker = ImagePicker();
+  selectImage() async {
+    final XFile? imageSelect =
+        await picker.pickImage(source: ImageSource.gallery);
+
+    if (imageSelect != null) {
+      setState(() {
+        image = File(imageSelect.path);
+      });
+      String nameimage = basename(image!.path);
+      Reference ref = FirebaseStorage.instance.ref().child(nameimage);
+      print("=============================================================");
+      print(ref);
+      print("=============================================================");
+      await ref.putFile(image!);
+      print(await ref.getDownloadURL());
+      print("=============================================================");
+      String urlimage = await ref.getDownloadURL();
+
+      print("=============================================================");
+      setState(() {
+        url = urlimage;
+      });
+    }
+  }
+
   String? name;
   String? rate;
   String? time;
@@ -43,9 +79,53 @@ class _TextfieldTestState extends State<TextfieldTest> {
                 Text(
                   "اضافة وصفة",
                   style: TextStyle(
-                      color: Colors.teal[500],
+                      color: Color(0xffC80000),
                       fontSize: 30,
                       fontWeight: FontWeight.bold),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: Row(
+                    mainAxisAlignment: image == null
+                        ? MainAxisAlignment.end
+                        : MainAxisAlignment.spaceBetween,
+                    children: [
+                      if (image != null)
+                        SizedBox(
+                          height: 100,
+                          width: 100,
+                          child: url == null
+                              ? const CircularProgressIndicator(
+                                  color: Color(0xffC80000),
+                                )
+                              : SizedBox(
+                                  height: 100,
+                                  width: 100,
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: Image.file(image!))),
+                        ),
+                      Container(
+                        decoration: BoxDecoration(
+                            color: redColor,
+                            borderRadius: BorderRadius.circular(20)),
+                        child: MaterialButton(
+                          onPressed: () {
+                            selectImage();
+                          },
+                          child: const Text(
+                            "Image",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+
+                      // : Image.file(image!)
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   height: 10,
@@ -246,7 +326,7 @@ class _TextfieldTestState extends State<TextfieldTest> {
                 ),
                 Container(
                   decoration: BoxDecoration(
-                      color: Colors.teal,
+                      color: redColor,
                       borderRadius: BorderRadius.circular(20)),
                   child: MaterialButton(
                     child: const Text(
@@ -261,6 +341,7 @@ class _TextfieldTestState extends State<TextfieldTest> {
                           .collection("recipe")
                           .add({
                         "name": name,
+                        "urlimage": url,
                         "rate": ratehardselect,
                         "type": dropdownValue,
                         "preparetion": preparetion,

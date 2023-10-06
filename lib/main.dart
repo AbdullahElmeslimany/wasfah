@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wasfah/loginpage/loginscreen.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:wasfah/onboardingscreen/onboardingpage.dart';
+import 'package:wasfah/testapp/selectimage.dart';
 import 'package:wasfah/view/screen/homepage/homepage.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -42,13 +43,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Wasfah',
       theme: ThemeData(
-        scaffoldBackgroundColor: Color.fromARGB(255, 241, 241, 241),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 241, 241, 241),
         // scaffoldBackgroundColor: const Color(0xffFFF1E8),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
         useMaterial3: true,
       ),
 
-      // home: const OnBoarding(),
+      // home: const SeclectImage(),
       home: StreamBuilder(
         stream: Connectivity().onConnectivityChanged,
         builder: (BuildContext context, AsyncSnapshot snapshot) {

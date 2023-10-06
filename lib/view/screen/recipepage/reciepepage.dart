@@ -68,10 +68,11 @@ class _RecipePageState extends State<RecipePage> {
                         borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(20),
                             topRight: Radius.circular(20)),
-                        child: Image.asset(
-                          "assets/images/imageone.jpg",
-                          fit: BoxFit.fill,
-                        ),
+                        child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Image.network(
+                                            data["urlimage"],fit: BoxFit.fill,),
+                                      ),
                       ),
                     ),
                     Container(

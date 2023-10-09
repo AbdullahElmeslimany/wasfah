@@ -10,6 +10,8 @@ import 'package:wasfah/loginpage/loginscreen.dart';
 import 'package:wasfah/personscreen/personscreen.dart';
 import 'package:wasfah/addpageadmin/additempage.dart';
 import 'package:wasfah/testapp/username.dart';
+import 'package:wasfah/view/screen/homepage/Privacypage/privacypolicy.dart';
+import 'package:wasfah/view/screen/homepage/Privacypage/termsandconditions.dart';
 import 'package:wasfah/view/screen/homepage/categories.dart';
 import 'package:wasfah/view/screen/homepage/recommedation.dart';
 import 'package:wasfah/view/screen/homepage/search.dart';
@@ -189,7 +191,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             MaterialPageRoute(
                                                 builder: (context) =>
                                                     // const AddPageAdmin(),
-                                                      const AdditemFirebase()));
+                                                    const AdditemFirebase()));
                                       } else {
                                         PersonPage(
                                           id: widget.iduser,
@@ -312,6 +314,54 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ],
                       ),
+                      Container(
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(25),
+                              topLeft: Radius.circular(25)),
+                        ),
+                        height: 30,
+                        width: MediaQuery.sizeOf(context).width - 30,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            InkWell(
+                              child: const Text(
+                                "PrivacyPolicy",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 14),
+                              ),
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const PrivacyPolicy(),
+                                    ));
+                              },
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            InkWell(
+                              child: const Text(
+                                "Terms and Conditions",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 14),
+                              ),
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const TermsandConditions(),
+                                    ));
+                              },
+                            ),
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),

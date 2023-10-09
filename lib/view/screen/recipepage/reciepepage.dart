@@ -53,36 +53,38 @@ class _RecipePageState extends State<RecipePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: SingleChildScrollView(
-        child: Center(
           child: data == null
-              ? const CircularProgressIndicator()
-              : Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: MediaQuery.sizeOf(context).width,
-                      color: Colors.black,
-                      child: ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            topRight: Radius.circular(20)),
+              ? const Center(child: CircularProgressIndicator())
+              : SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: MediaQuery.sizeOf(context).width,
+                        color: Colors.black,
                         child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(10),
-                                        child: Image.network(
-                                            data["urlimage"],fit: BoxFit.fill,),
-                                      ),
+                          borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20)),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.network(
+                              data["urlimage"],
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.sizeOf(context).height,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(35),
-                        color: Colors.white,
-                      ),
-                      child: TextReciepe(iddata: widget.id,
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.sizeOf(context).height,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(35),
+                          color: Colors.white,
+                        ),
+                        child: TextReciepe(
+                          iddata: widget.id,
                           name: data["name"],
                           rate: data["rate"],
                           ratehard: data["details"]["ratehard"],
@@ -93,14 +95,11 @@ class _RecipePageState extends State<RecipePage> {
                           time: data["details"]["time"],
                           grams: data["component"]["gram"],
                           items: data["component"]["items"],
-
-                          ),
-
-                    ),
-                  ],
-                ),
-        ),
-      )),
+                        ),
+                      ),
+                    ],
+                  ),
+                )),
     );
   }
 }

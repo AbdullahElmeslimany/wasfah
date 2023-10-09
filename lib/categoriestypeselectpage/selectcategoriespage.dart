@@ -21,8 +21,10 @@ class _SelectCategoriesScreenState extends State<SelectCategoriesScreen> {
   bool loading = true;
 
   getData() async {
-    querySnapshot =
-        await FirebaseFirestore.instance.collection(namecolloction).get();
+    querySnapshot = await FirebaseFirestore.instance
+        .collection(namecolloction)
+        .where("type", isEqualTo: widget.type)
+        .get();
 
     setState(() {
       data.addAll(querySnapshot.docs);

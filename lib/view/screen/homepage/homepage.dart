@@ -41,11 +41,22 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  QuerySnapshot? getdata;
+  List dataRecommendation = [];
+  getdateRecommendation() async {
+    getdata = await FirebaseFirestore.instance.collection("recipe").get();
+    setState(() {
+      dataRecommendation.addAll(getdata!.docs);
+    });
+    print("wlcome================================");
+    print(data.length);
+  }
+
   getDataShared() async {
     SharedPreferences prefget = await SharedPreferences.getInstance();
     idshared = prefget.getString("id");
     repeatshared = prefget.getBool('repeat');
-    print("===============================================");
+    print("=============================================");
     print(idshared);
     print(repeatshared);
     print("===============================================");
@@ -57,13 +68,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
+    getdateRecommendation();
     getdatefirebase();
     // checkinternet();
     super.initState();
     print("===============================================");
-    // print(data[0]["name"]);
+
     getDataShared();
-    print("===============================================");
+
+    print("===========================================");
   }
 
   @override
@@ -277,7 +290,15 @@ class _MyHomePageState extends State<MyHomePage> {
                           )
                         ],
                       ),
-                      const RecommendationState(),
+                       RecommendationState(data: getdata!.docs),
+                      //
+                      //
+                      //
+                      //
+                      //
+                      //
+                      //
+                      //
                       // SizedBox(height: 5),
 
                       const Padding(

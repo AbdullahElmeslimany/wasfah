@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+
 class RecommendationState extends StatelessWidget {
-  const RecommendationState({super.key});
+  final data;
+  const RecommendationState({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +18,7 @@ class RecommendationState extends StatelessWidget {
       height: 280,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: imagelist.length,
+        itemCount: data.length < 4 ? data.length : 4,
         itemBuilder: (BuildContext context, int index) {
           return Padding(
             padding: const EdgeInsets.only(right: 15.0, top: 17),
@@ -38,19 +41,21 @@ class RecommendationState extends StatelessWidget {
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(20),
-                            child: Image.asset(
-                              imagelist[index]["Url"],
-                              width: 150,
-                              height: 200,
-                              fit: BoxFit.fill,
-                            ),
+                            child: data[index]["urlimage"] == null
+                                ? Image.asset("assets/images/loading2.gif")
+                                : Image.network(
+                                    data[index]["urlimage"],
+                                    width: 150,
+                                    height: 200,
+                                    fit: BoxFit.fill,
+                                  ),
                           ),
                         ),
                         const SizedBox(
                           height: 5,
                         ),
                         Text(
-                          imagelist[index]["name"],
+                          data[index]["name"],
                           style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 17),
                         ),
@@ -60,7 +65,6 @@ class RecommendationState extends StatelessWidget {
                       ],
                     ),
                   ),
-                
                 ],
               ),
             ),

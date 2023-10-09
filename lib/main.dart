@@ -7,6 +7,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:wasfah/onboardingscreen/onboardingpage.dart';
 import 'package:wasfah/testapp/arrayadd.dart';
 import 'package:wasfah/testapp/selectimage.dart';
+
 import 'package:wasfah/view/screen/homepage/homepage.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
 
-      // home: const StreamBuilderPage(),
+      // home: const MyHomePageGIF(),
       home: StreamBuilder(
         stream: Connectivity().onConnectivityChanged,
         builder: (BuildContext context, AsyncSnapshot snapshot) {

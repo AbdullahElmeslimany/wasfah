@@ -66,7 +66,7 @@ class _AdditemFirebaseState extends State<AdditemFirebase> {
     "salad",
     "sauce"
   ];
-  List<String> ratehard = ["hard", "medium", "hard"];
+  List<String> ratehard = ["easy", "medium", "hard"];
   @override
   Widget build(BuildContext context) {
     return SafeArea(

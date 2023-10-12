@@ -66,7 +66,7 @@ class _SearchPageState extends State<SearchPage> {
               child: MaterialButton(
                 child: loading == true
                     ? const CircularProgressIndicator()
-                    : const Text("get"),
+                    : const Text("بحث"),
                 onPressed: () {
                   setState(() {
                     data.clear();
@@ -85,7 +85,9 @@ class _SearchPageState extends State<SearchPage> {
                 itemBuilder: (BuildContext context, int index) {
                   return Column(
                     children: [
-                      const SizedBox(
+                      Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25)),
                         height: 20,
                       ),
                       InkWell(
@@ -105,14 +107,14 @@ class _SearchPageState extends State<SearchPage> {
                                   child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     height: 30,
                                     child: ClipRRect(
                                         borderRadius: BorderRadius.circular(10),
                                         child: Image.network(
                                             data[index]["urlimage"])),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 90,
                                   ),
                                   Text(data[index]["name"]),

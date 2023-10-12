@@ -21,6 +21,7 @@ class _IngredientsState extends State<Ingredients> {
 
   // String id = "TVdDvXJ94ZxARPRm1lOw";
   String name = "recipe";
+  bool select = false;
   // var data;
   List dataIngredientList = [];
   List datatItemsList = [];
@@ -56,6 +57,7 @@ class _IngredientsState extends State<Ingredients> {
     super.initState();
   }
 
+  final ScrollController _controller = ScrollController();
   @override
   Widget build(BuildContext context) {
     // List Detials = [
@@ -70,28 +72,51 @@ class _IngredientsState extends State<Ingredients> {
     //   // {"id": "4", "icon": "", "name": "", "garm": ""},
     //   // {"id": "5", "icon": "", "name": "", "garm": ""},
     // ];
+
     return ListView.builder(
-      controller: ScrollController(keepScrollOffset: false),
+      // controller: ScrollController(keepScrollOffset: false),
+      controller: _controller,
       itemCount: widget.items.length,
       itemBuilder: (BuildContext context, int index) {
         return Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
+            InkWell(
+              onTap: () {
+                setState(() {
+                  if (select == false) {
+                    select = true;
+                    print(index);
+                  } else {
+                    select = false;
+                    print(index);
+                  }
+                });
+              },
+              child: Container(
+                height: 27,
+                width: MediaQuery.sizeOf(context).width,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: select == true ? Colors.amber : null,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Icon(Icons.flood_outlined),
-                    const SizedBox(
-                      width: 15,
+                    Row(
+                      children: [
+                        const Icon(Icons.fastfood_outlined),
+                        Container(
+                          width: 15,
+                        ),
+                        Text(widget.items[index]),
+                        // Text("${datatItemsList[index]}"),
+                      ],
                     ),
-                    Text(widget.items[index]),
-                    // Text("${datatItemsList[index]}"),
+                    Text("${widget.grams[index]} g")
+                    // Text("${datatgramssList[index]} g")
                   ],
                 ),
-                Text("${widget.grams[index]} g")
-                // Text("${datatgramssList[index]} g")
-              ],
+              ),
             ),
             const SizedBox(
               height: 20,

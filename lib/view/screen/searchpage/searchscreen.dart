@@ -66,7 +66,11 @@ class _SearchPageState extends State<SearchPage> {
               child: MaterialButton(
                 child: loading == true
                     ? const CircularProgressIndicator()
-                    : const Text("بحث"),
+                    : const Text(
+                        "بحث",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 25),
+                      ),
                 onPressed: () {
                   setState(() {
                     data.clear();
@@ -100,15 +104,17 @@ class _SearchPageState extends State<SearchPage> {
                                 ));
                           },
                           child: Container(
-                              height: 40,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25),
+                                  color: redColor),
+                              height: 80,
                               width: MediaQuery.sizeOf(context).width - 30,
-                              decoration: BoxDecoration(color: redColor),
                               child: Center(
                                   child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   SizedBox(
-                                    height: 30,
+                                    height: 50,
                                     child: ClipRRect(
                                         borderRadius: BorderRadius.circular(10),
                                         child: Image.network(
@@ -117,7 +123,12 @@ class _SearchPageState extends State<SearchPage> {
                                   const SizedBox(
                                     width: 90,
                                   ),
-                                  Text(data[index]["name"]),
+                                  Text(
+                                    data[index]["name"],
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 22),
+                                  ),
                                 ],
                               )))),
                     ],

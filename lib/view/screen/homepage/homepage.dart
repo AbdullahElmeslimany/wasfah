@@ -158,13 +158,13 @@ class _MyHomePageState extends State<MyHomePage> {
                           Padding(
                             padding: const EdgeInsets.only(right: 8),
                             child: InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const HomeScreen()),
-                                );
-                              },
+                              // onTap: () {
+                              //   Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //         builder: (context) => const HomeScreen()),
+                              //   );
+                              // },
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,

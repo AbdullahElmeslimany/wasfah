@@ -232,21 +232,45 @@ class _AdditemFirebaseState extends State<AdditemFirebase> {
                 const SizedBox(
                   height: 10,
                 ),
+
+
+
+                //////
+                ///////
+                ///////
+                ///////
+                ///////
+                /////
+                ///
                 SizedBox(
                   // width: MediaQuery.sizeOf(context).width / 3 - 30,
-                  child: DropdownMenu(
-                      initialSelection: ratehard.first,
-                      onSelected: (String? value) {
-                        // This is called when the user selects an item.
-                        setState(() {
-                          ratehardselect = value!;
-                        });
-                      },
-                      dropdownMenuEntries: ratehard
-                          .map<DropdownMenuEntry<String>>((String value) {
-                        return DropdownMenuEntry<String>(
-                            value: value, label: value);
-                      }).toList()),
+                  child: 
+                  DropdownMenu(
+                    initialSelection: ratehard.first,
+                    onSelected: (String? value) {
+                      // This is called when the user selects an item.
+                      setState(() {
+                        ratehardselect = value!;
+                      });
+                    },
+                    dropdownMenuEntries:
+                        ratehard.map<DropdownMenuEntry<String>>((String value) {
+                      return DropdownMenuEntry<String>(
+                          value: value, label: value);
+                    }).toList()),
+                  // DropdownMenu(
+                  //     initialSelection: ratehard.first,
+                  //     onSelected: (String? value) {
+                  //       // This is called when the user selects an item.
+                  //       setState(() {
+                  //         ratehardselect = value!;
+                  //       });
+                  //     },
+                  //     dropdownMenuEntries: ratehard
+                  //         .map<DropdownMenuEntry<String>>((String value) {
+                  //       return DropdownMenuEntry<String>(
+                  //           value: value, label: value);
+                  //     }).toList()),
                 ),
                 const SizedBox(
                   height: 10,
@@ -342,7 +366,7 @@ class _AdditemFirebaseState extends State<AdditemFirebase> {
                           .add({
                         "name": name,
                         "urlimage": url,
-                        "rate": ratehardselect,
+                        "rate": rate,
                         "type": dropdownValue,
                         "preparetion": preparetion,
                         "description": description,
@@ -352,7 +376,7 @@ class _AdditemFirebaseState extends State<AdditemFirebase> {
                         },
                         "details": {
                           "time": time,
-                          "ratehard": ratehard,
+                          "ratehard": ratehardselect,
                           "cal": cal
                         },
                       });
